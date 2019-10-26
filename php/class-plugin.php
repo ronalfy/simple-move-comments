@@ -19,7 +19,7 @@ class Plugin extends Plugin_Abstract {
 		$this->move_comments_interface = new Admin\Move_Comments_Interface();
 		$this->move_comments_interface->register_hooks();
 
-		// Add Ajax handler
+		// Add Ajax handler.
 		$this->move_admin_ajax = new Ajax\Ajax();
 		$this->move_admin_ajax->register_hooks();
 	}

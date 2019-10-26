@@ -31,7 +31,18 @@ class Ajax {
 	 */
 	public function comment_search() {
 		if ( wp_verify_nonce( filter_input( INPUT_GET, 'nonce' ), 'move-comment-' . filter_input( INPUT_GET, 'comment_id' ) ) ) {
-			die( 'yo' );
+			$search = sanitize_text_field( filter_input( INPUT_GET, 'search' ) );
+			$query  = new \WP_Query(
+				array(
+					'post_status'     => 'publish',
+					'posts_per_page' => 10,
+					's'              => $search,
+				)
+			);
+			if ( $query->have_posts() ) {
+				$posts = $query->get_posts();
+				die( wp_json_encode( $posts ) );
+			}
 		} else {
 			die( '' );
 		}

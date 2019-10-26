@@ -17,10 +17,7 @@ jQuery(function($) {
 			preConfirm: (search) => {
 			  return fetch(ajaxurl + '?action=simple_move_comment_search&search=' + search + '&nonce=' + nonce + '&comment_id=' + comment_id )
 				.then(response => {
-				  if (!response.ok) {
-					throw new Error(response.statusText)
-				  }
-				  return response.json()
+				  return response;
 				})
 				.catch(error => {
 				  Swal.showValidationMessage(
@@ -30,10 +27,19 @@ jQuery(function($) {
 			},
 			allowOutsideClick: () => !Swal.isLoading()
 		  }).then((result) => {
-			if (result.value) {
+			if (result) {
+				console.log(result);
 			  Swal.fire({
-				title: `${result.value.login}'s avatar`,
-				imageUrl: result.value.avatar_url
+				title: 'Select a Post',
+				input: 'select',
+				inputOptions: {
+					apples: 'Apples',
+					bananas: 'Bananas',
+					grapes: 'Grapes',
+					oranges: 'Oranges'
+				},
+				inputPlaceholder: 'Select a Post',
+				showCancelButton: true,
 			  })
 			}
 		  });
