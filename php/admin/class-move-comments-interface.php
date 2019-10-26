@@ -72,6 +72,9 @@ class Move_Comments_Interface {
 	 * @param object $comment Comment to modify.
 	 */
 	public function comment_remove_meta_box( $comment ) {
+		if ( ! current_user_can( 'edit_comment', $comment->comment_ID ) ) {
+			return;
+		}
 		$nonce    = wp_create_nonce( 'move-comment-' . $comment->comment_ID );
 		$move_url = add_query_arg(
 			array(
@@ -94,6 +97,9 @@ class Move_Comments_Interface {
 	 * @return array Updated actions.
 	 */
 	public function register_comment_row_actions( $actions, $comment ) {
+		if ( ! current_user_can( 'edit_comment', $comment->comment_ID ) ) {
+			return $actions;
+		}
 		$nonce    = wp_create_nonce( 'move-comment-' . $comment->comment_ID );
 		$move_url = add_query_arg(
 			array(
