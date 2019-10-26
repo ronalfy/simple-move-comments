@@ -45,7 +45,7 @@ class Move_Comments_Interface {
 			admin_url( 'edit-comments.php' )
 		);
 
-		$actions['move'] = sprintf( '<a href="%s">', esc_url( $move_url ) ) . esc_html__( 'Move', 'simple-move-comments' ) . '</a>';
+		$actions['move'] = sprintf( '<a href="%s" class="simple-move-comments">', esc_url( $move_url ) ) . esc_html__( 'Move', 'simple-move-comments' ) . '</a>';
 		return $actions;
 	}
 }
