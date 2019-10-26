@@ -22,5 +22,9 @@ class Plugin extends Plugin_Abstract {
 		// Add Ajax handler.
 		$this->move_admin_ajax = new Ajax\Ajax();
 		$this->move_admin_ajax->register_hooks();
+
+		// Add Front end interface.
+		$this->frontend = new Frontend\Move_Comments_Frontend();
+		$this->frontend->register_hooks();
 	}
 }
