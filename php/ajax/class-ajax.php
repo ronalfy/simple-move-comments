@@ -59,6 +59,9 @@ class Ajax {
 			$child_comments   = $this->get_direct_subcomments( $comment_id );
 			$comments_to_move = implode( ',', array_map( 'absint', $child_comments ) );
 
+			if ( 0 === $comment_post_id ) {
+				exit();
+			}
 			// Move comments to selected post.
 			global $wpdb;
 			$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->comments SET comment_post_ID = %s WHERE comment_ID IN ( $comments_to_move )", $comment_post_id ) ); // phpcs:ignore
