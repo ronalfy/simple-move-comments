@@ -15,6 +15,8 @@ class Plugin extends Plugin_Abstract {
 	 * Execute this once plugins are loaded.
 	 */
 	public function plugin_loaded() {
-		// Custon code here.
+		// Enqueue block assets.
+		$this->move_comments_interface = new Admin\Move_Comments_Interface();
+		$this->move_comments_interface->register_hooks();
 	}
 }
