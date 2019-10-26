@@ -26,6 +26,15 @@ jQuery(function($) {
 					inputOptions: inputs,
 					inputPlaceholder: 'Select a Post',
 					showCancelButton: true,
+					preConfirm: (search) => {
+						$.post(ajaxurl, {action: 'simple_move_comment', post_id: $('swal2-select :selected').val(), nonce: nonce, comment_id: comment_id}, function( response ) {
+							Swal.fire({
+								type: 'success',
+								title: 'Success.',
+								text: 'The Comment Has Been Moved!',
+							})
+						}, 'json');
+					}
 				  });
 			  }, 'json');
 			}

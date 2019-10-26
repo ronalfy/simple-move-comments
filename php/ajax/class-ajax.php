@@ -24,6 +24,7 @@ class Ajax {
 	 */
 	public function register_hooks() {
 		add_action( 'wp_ajax_simple_move_comment_search', array( $this, 'comment_search' ) );
+		add_action( 'wp_ajax_simple_move_comment', array( $this, 'move_comment' ) );
 	}
 
 	/**
@@ -43,6 +44,19 @@ class Ajax {
 				$posts = $query->get_posts();
 				die( wp_json_encode( $posts ) );
 			}
+		} else {
+			die( '' );
+		}
+	}
+
+	/**
+	 * Moves a comment based on comment ID and post ID
+	 */
+	public function move_comment() {
+		if ( wp_verify_nonce( filter_input( INPUT_POST, 'nonce' ), 'move-comment-' . filter_input( INPUT_POST, 'comment_id' ) ) ) {
+			$post_id    = absint( filter_input( INPUT_POST, 'post_id' ) );
+			$comment_id = absint( filter_input( INPUT_POST, 'comment_id' ) );
+			die( wp_json_encode( array( 'test' => 'test' ) ) );
 		} else {
 			die( '' );
 		}
