@@ -54,11 +54,36 @@ class Ajax {
 	 */
 	public function move_comment() {
 		if ( wp_verify_nonce( filter_input( INPUT_POST, 'nonce' ), 'move-comment-' . filter_input( INPUT_POST, 'comment_id' ) ) ) {
-			$post_id    = absint( filter_input( INPUT_POST, 'post_id' ) );
-			$comment_id = absint( filter_input( INPUT_POST, 'comment_id' ) );
-			die( wp_json_encode( array( 'test' => 'test' ) ) );
+			$comment_post_id  = absint( filter_input( INPUT_POST, 'post_id' ) );
+			$comment_id       = absint( filter_input( INPUT_POST, 'comment_id' ) );
+			$child_comments   = $this->get_direct_subcomments( $comment_id );
+			$comments_to_move = implode( ',', array_map( 'absint', $child_comments ) );
+
+			// Move comments to selected post.
+			global $wpdb;
+			$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->comments SET comment_post_ID = %s WHERE comment_ID IN ( $comments_to_move )", $comment_post_id ) ); // phpcs:ignore
+			exit();
 		} else {
 			die( '' );
 		}
+	}
+
+	/**
+	 * Retrieve child comments.
+	 *
+	 * @param int $comment_id The comment ID to retrieve children for.
+	 *
+	 * @return array Array of comment IDs.
+	 */
+	private function get_direct_subcomments( $comment_id ) {
+		$comments_args = array( 'parent' => $comment_id );
+		$comments      = get_comments( $comments_args );
+		$comments_id   = array( $comment_id );
+
+		foreach ( $comments as $comment ) {
+			$comments_id[] = $comment->comment_ID;
+		}
+
+		return $comments_id;
 	}
 }
