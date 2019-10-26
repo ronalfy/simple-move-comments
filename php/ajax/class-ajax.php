@@ -30,8 +30,8 @@ class Ajax {
 	 * Performs a search for posts/pages
 	 */
 	public function comment_search() {
-		if ( wp_verify_nonce( filter_input( INPUT_GET, 'nonce' ), 'move-comment-' . filter_input( INPUT_GET, 'comment_id' ) ) ) {
-			$search = sanitize_text_field( filter_input( INPUT_GET, 'search' ) );
+		if ( wp_verify_nonce( filter_input( INPUT_POST, 'nonce' ), 'move-comment-' . filter_input( INPUT_POST, 'comment_id' ) ) ) {
+			$search = sanitize_text_field( filter_input( INPUT_POST, 'search' ) );
 			$query  = new \WP_Query(
 				array(
 					'post_status'     => 'publish',
