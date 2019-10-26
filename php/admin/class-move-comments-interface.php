@@ -1,6 +1,6 @@
 <?php
 /**
- * Add Settings page to Plugin and to sub-menu
+ * Add move comments to edit comments screen.
  *
  * @package   Simple_Move_Comments
  */
@@ -24,8 +24,32 @@ class Move_Comments_Interface {
 	 */
 	public function register_hooks() {
 		add_action( 'comment_row_actions', array( $this, 'register_comment_row_actions' ), 10, 2 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 	}
 
+	/**
+	 * Enqueue scripts on the comment edit page.
+	 */
+	public function enqueue_admin_scripts() {
+		global $pagenow;
+		if ( 'edit-comments.php' !== $pagenow ) {
+			return;
+		}
+		wp_enqueue_script(
+			'simple-move-comments',
+			SIMPLE_MOVE_COMMENTS_URL . '/js/admin-move-comments.js',
+			array( 'jquery', 'wp-ajax-response' ),
+			SIMPLE_MOVE_COMMENTS_VERSION,
+			true
+		);
+		wp_enqueue_script(
+			'swal',
+			SIMPLE_MOVE_COMMENTS_URL . '/js/sweetalert.js',
+			array( 'jquery' ),
+			SIMPLE_MOVE_COMMENTS_VERSION,
+			true
+		);
+	}
 	/**
 	 * Adds a action to the comments screen.
 	 *
@@ -35,10 +59,10 @@ class Move_Comments_Interface {
 	 * @return array Updated actions.
 	 */
 	public function register_comment_row_actions( $actions, $comment ) {
-		$nonce    = wp_create_nonce( 'move-comment-' . $comment->ID );
+		$nonce    = wp_create_nonce( 'move-comment-' . $comment->comment_ID );
 		$move_url = add_query_arg(
 			array(
-				'c'        => $comment->ID,
+				'c'        => $comment->comment_ID,
 				'action'   => 'move_comment',
 				'_wpnonce' => $nonce,
 			),
