@@ -31,11 +31,11 @@ class Ajax {
 	 * Performs a search for posts/pages
 	 */
 	public function comment_search() {
-		if ( wp_verify_nonce( filter_input( INPUT_POST, 'nonce' ), 'move-comment-' . filter_input( INPUT_POST, 'comment_id' ) ) ) {
+		if ( wp_verify_nonce( filter_input( INPUT_POST, 'nonce' ), 'move-comment-' . filter_input( INPUT_POST, 'comment_id' ) ) && current_user_can( 'edit_comment', absint( filter_input( INPUT_POST, 'comment_id' ) ) ) ) {
 			$search = sanitize_text_field( filter_input( INPUT_POST, 'search' ) );
 			$query  = new \WP_Query(
 				array(
-					'post_status'     => 'publish',
+					'post_status'    => 'publish',
 					'posts_per_page' => 10,
 					's'              => $search,
 				)
@@ -53,7 +53,7 @@ class Ajax {
 	 * Moves a comment based on comment ID and post ID
 	 */
 	public function move_comment() {
-		if ( wp_verify_nonce( filter_input( INPUT_POST, 'nonce' ), 'move-comment-' . filter_input( INPUT_POST, 'comment_id' ) ) ) {
+		if ( wp_verify_nonce( filter_input( INPUT_POST, 'nonce' ), 'move-comment-' . filter_input( INPUT_POST, 'comment_id' ) ) && current_user_can( 'edit_comment', absint( filter_input( INPUT_POST, 'comment_id' ) ) ) ) {
 			$comment_post_id  = absint( filter_input( INPUT_POST, 'post_id' ) );
 			$comment_id       = absint( filter_input( INPUT_POST, 'comment_id' ) );
 			$child_comments   = $this->get_direct_subcomments( $comment_id );
