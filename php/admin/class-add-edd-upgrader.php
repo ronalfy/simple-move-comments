@@ -41,7 +41,7 @@ class Add_EDD_Upgrader {
 				array(
 					'version' => SIMPLE_MOVE_COMMENTS_VERSION,
 					'license' => $license,
-					'item_id' => 5596,
+					'item_id' => 7411,
 					'author'  => 'Ronald Huereca',
 					'beta'    => false,
 					'url'     => home_url(),
