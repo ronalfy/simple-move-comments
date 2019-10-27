@@ -34,6 +34,9 @@ class Move_Comments_Frontend {
 	 * @param object $comment      The comment object.
 	 */
 	public function add_frontend_button( $comment_text, $comment ) {
+		if ( is_admin() ) {
+			return $comment_text;
+		}
 		if ( ! current_user_can( 'edit_comment', $comment->comment_ID ) ) {
 			return $comment_text;
 		}
