@@ -1,5 +1,5 @@
-# WordPress and Ajax Chapter 3
+# Simple Move Comments
 
-[![Build Status](https://travis-ci.org/wpajax/chapter-3.svg?branch=master)](https://travis-ci.org/wpajax/chapter-3)
+[![Build Status](https://travis-ci.org/ronalfy/simple-move-comments.svg?branch=master)](https://travis-ci.org/ronalfy/simple-move-comments)
 
-Please visit <a href="https://wpandajax.com">WordPress and Ajax</a>
+<a href="https://mediaron.com/downloads/simple-move-comments/">Purchase Simple Move Comments</a> for support and automatic updates.
