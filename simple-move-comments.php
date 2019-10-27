@@ -9,7 +9,7 @@
  * Plugin Name: Simple Move Comments
  * Plugin URI: https://mediaron.com/simple-move-comments
  * Description: Allows you to move comments to a different post or page.
- * Version: 2.0.1
+ * Version: 2.0.2
  * Author: MediaRon LLC
  * Author URI: https://mediaron.com
  * License: GPL2
@@ -18,7 +18,7 @@
  * Domain Path: languages
  */
 
-define( 'SIMPLE_MOVE_COMMENTS_VERSION', '2.0.1' );
+define( 'SIMPLE_MOVE_COMMENTS_VERSION', '2.0.2' );
 define( 'SIMPLE_MOVE_COMMENTS_PLUGIN_NAME', 'Simple Move Comments' );
 define( 'SIMPLE_MOVE_COMMENTS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SIMPLE_MOVE_COMMENTS_URL', plugins_url( '/', __FILE__ ) );
