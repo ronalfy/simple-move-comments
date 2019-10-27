@@ -30,5 +30,9 @@ class Plugin extends Plugin_Abstract {
 		// Add admin interface.
 		$this->admin_settings = new Admin\Move_Comments_Admin();
 		$this->admin_settings->register_hooks();
+
+		// Add EDD Upgrader class.
+		$this->edd_updater = new Admin\Add_EDD_Upgrader();
+		$this->edd_updater->register_hooks();
 	}
 }
