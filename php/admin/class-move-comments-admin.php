@@ -144,6 +144,9 @@ class Move_Comments_Admin {
 							$license_message = __( 'An error occurred, please try again.', 'simple-move-comments' );
 							break;
 					}
+				} else {
+					$license = sanitize_text_field( $options['license'] );
+					update_site_option( 'smc_license', $license );
 				}
 				if ( empty( $license_message ) ) {
 					update_site_option( 'smc_license_status', $license_data->license );
