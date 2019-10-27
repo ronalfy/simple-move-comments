@@ -26,5 +26,9 @@ class Plugin extends Plugin_Abstract {
 		// Add Front end interface.
 		$this->frontend = new Frontend\Move_Comments_Frontend();
 		$this->frontend->register_hooks();
+
+		// Add admin interface.
+		$this->admin_settings = new Admin\Move_Comments_Admin();
+		$this->admin_settings->register_hooks();
 	}
 }
