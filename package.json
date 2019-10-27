@@ -1,0 +1,29 @@
+{
+  "name": "simple-move-comments",
+  "version": "2.0.0",
+  "description": "Ability to move comments to a different page.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ronalfy/simple-move-comments"
+  },
+  "author": "Ronald Huereca",
+  "license": "SEE LICENSE IN license.txt",
+  "bugs": {
+    "url": "https://mediaron.com/support"
+  },
+  "homepage": "https://mediaron.com/",
+  "devDependencies": {
+    "axios": "^0.18.1",
+    "classnames": "^2.2.6",
+    "del": "^5.0.0",
+    "gulp": "^4.0.2",
+    "gulp-run": "^1.7.1",
+    "gulp-zip": "^4.2.0",
+    "lodash": "^4.17.15"
+  },
+  "dependencies": {
+    "fstream": "^1.0.12",
+    "npm": "^6.9.0",
+    "tar": "^4.4.9"
+  }
+}
